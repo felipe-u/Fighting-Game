@@ -25,6 +25,7 @@ class Sprite {
         },
             this.color = color,
             this.isAttacking
+        this.health = 100
     }
 
     draw() {
@@ -33,8 +34,8 @@ class Sprite {
 
         // attack box
         if (this.isAttacking) {
-        c.fillStyle = 'green'
-        c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
+            c.fillStyle = 'green'
+            c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
         }
 
     }
@@ -156,7 +157,8 @@ function animate() {
         rectangle2: enemy
     }) && player.isAttacking) {
         player.isAttacking = false
-        console.log('player touch')
+        enemy.health -= 20
+        document.querySelector('#enemyHealth').style.width = enemy.health + '%'
     }
 
     if (rectangularCollision({
@@ -164,7 +166,8 @@ function animate() {
         rectangle2: player
     }) && enemy.isAttacking) {
         enemy.isAttacking = false
-        console.log('enemy touch')
+        player.health -= 20
+        document.querySelector('#playerHealth').style.width = player.health + '%'
     }
 }
 
