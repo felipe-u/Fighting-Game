@@ -12,7 +12,17 @@ const backgorund = new Sprite({
         x: 0,
         y: 0
     },
-    imageSrc: './img/background.png'
+    imageSrc: './img/background2.png'
+})
+
+const shop = new Sprite({
+    position: {
+        x: 550,
+        y: 185
+    },
+    imageSrc: './img/decorations/shop_anim.png',
+    scale: 2.75,
+    framesMax: 6
 })
 
 const player = new Fighter({
@@ -77,6 +87,7 @@ function animate() {
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
     backgorund.update()
+    shop.update()
     player.update()
     enemy.update()
 
