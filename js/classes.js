@@ -96,7 +96,7 @@ class Fighter extends Sprite {
             this.position.y = 387.59999
         } else this.velocity.y += gravity
 
-        console.log(this.position.y)
+        //console.log(this.position.y)
     }
 
     attack() {
@@ -120,7 +120,7 @@ class Fighter extends Sprite {
                 break;
             case 'run':
                 if (this.image !== this.sprites.run.image) {
-                    player.image = player.sprites.run.image
+                    this.image = this.sprites.run.image
                     this.framesMax = this.sprites.run.framesMax
                     this.frameCurrent = 0
                 }
