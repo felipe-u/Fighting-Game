@@ -67,6 +67,14 @@ const player = new Fighter({
             imageSrc: './img/character/martialHero1/Attack1.png',
             framesMax: 6
         }
+    },
+    attackBox: {
+        offset: {
+            x: 100,
+            y: 50
+        },
+        width: 140,
+        height: 50
     }
 })
 
@@ -112,6 +120,14 @@ const enemy = new Fighter({
             imageSrc: './img/character/martialHero2/Attack1.png',
             framesMax: 4
         }
+    },
+    attackBox: {
+        offset: {
+            x: -175,
+            y: 50
+        },
+        width: 175,
+        height: 50
     }
 })
 
@@ -192,19 +208,29 @@ function animate() {
     if (rectangularCollision({
         rectangle1: player,
         rectangle2: enemy
-    }) && player.isAttacking) {
+    }) && player.isAttacking && player.frameCurrent === 4) {
         player.isAttacking = false
         enemy.health -= 20
         document.querySelector('#enemyHealth').style.width = enemy.health + '%'
     }
 
+    // if player misses
+    if (player.isAttacking && player.frameCurrent === 4) {
+        player.isAttacking = false
+    }
+
     if (rectangularCollision({
         rectangle1: enemy,
         rectangle2: player
-    }) && enemy.isAttacking) {
+    }) && enemy.isAttacking && enemy.frameCurrent === 2) {
         enemy.isAttacking = false
         player.health -= 20
         document.querySelector('#playerHealth').style.width = player.health + '%'
+    }
+
+    // if enemy misses
+    if (enemy.isAttacking && enemy.frameCurrent === 2) {
+        enemy.isAttacking = false
     }
 
     // end game based on health
